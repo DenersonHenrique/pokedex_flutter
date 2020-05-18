@@ -29,21 +29,19 @@ class PokeAbout extends StatelessWidget {
             Observer(builder: (context) {
               Specie _specie = _pokeApiV2Store.specie;
               return SizedBox(
-                height: 100,
-                child: SingleChildScrollView(
-                  child: _specie != null
-                      ? Text(
-                          _specie.flavorTextEntries
-                              .where((description) =>
-                                  description.language.name == 'en')
-                              .first
-                              .flavorText,
-                          style: TextStyle(
-                            fontSize: 14,
-                          ),
-                        )
-                      : CircularProgressAbout(),
-                ),
+                // height: 100,
+                child: _specie != null
+                    ? Text(
+                        _specie.flavorTextEntries
+                            .where((description) =>
+                                description.language.name == 'en')
+                            .first
+                            .flavorText,
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      )
+                    : CircularProgressAbout(),
               );
             }),
             SizedBox(

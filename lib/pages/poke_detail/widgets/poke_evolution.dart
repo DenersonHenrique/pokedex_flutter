@@ -9,14 +9,14 @@ class PokeEvolution extends StatelessWidget {
 
   Widget resizePokemon(Widget widget) {
     return Padding(
-      padding: const EdgeInsets.only(top: 12.0),
-      child: SizedBox(height: 80, width: 80, child: widget),
+      padding: const EdgeInsets.only(top: 8.0),
+      child: SizedBox(height: 70, width: 70, child: widget),
     );
   }
 
   Widget pokeName(String name) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
       child: Text(
         name,
         style: TextStyle(
@@ -62,12 +62,10 @@ class PokeEvolution extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         child: Observer(builder: (context) {
           Pokemon pokemon = _pokeApiStore.currentPokemon;
-          return SingleChildScrollView(
-            child: Column(
-                // children: <Widget>[],
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: getEvolution(pokemon)),
-          );
+          return Column(
+              // children: <Widget>[],
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: getEvolution(pokemon));
         }),
       ),
     );

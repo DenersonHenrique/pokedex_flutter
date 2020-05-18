@@ -36,7 +36,7 @@ class _AboutItemState extends State<AboutItem>
         backgroundColor: Colors.white,
         elevation: 0,
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(35),
+          preferredSize: Size.fromHeight(50),
           child: Observer(builder: (context) {
             _pokeApiV2Store.getInfoPokemon(_pokemonStore.currentPokemon.name);
             _pokeApiV2Store
