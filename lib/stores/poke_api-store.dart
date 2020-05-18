@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/consts/consts_api.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_pokedex/models/pokeApi.dart';
+import 'package:flutter_pokedex/consts/consts_app.dart';
 import 'package:http/http.dart' as http;
 part 'poke_api-store.g.dart';
 
@@ -44,7 +45,7 @@ abstract class _PokeApiStoreBase with Store {
   @action
   setCurrentPokemon({int index}) {
     _currentPokemon = _pokeAPI.pokemon[index];
-    pokeColor = ConstsApi.getColorType(type: _currentPokemon.type[0]);
+    pokeColor = ConstsApp.getColorType(type: _currentPokemon.type[0]);
     currentPosition = index;
   }
 
