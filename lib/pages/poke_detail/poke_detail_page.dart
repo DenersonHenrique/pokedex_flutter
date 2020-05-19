@@ -37,7 +37,7 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
         PageController(initialPage: widget.index, viewportFraction: 0.5);
     _pokemonStore = GetIt.instance<PokeApiStore>();
     _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();
-    _pokeApiV2Store.getInfoPokemon(_pokemonStore.currentPokemon.name);
+    _pokeApiV2Store.getInfoPokemon(_pokemonStore.currentPokemon.id);
     _pokeApiV2Store.getInfoSpecie(_pokemonStore.currentPokemon.id.toString());
     _animation = MultiTrackTween([
       Track("rotation").add(Duration(seconds: 5), Tween(begin: 0.0, end: 6.0),
@@ -210,7 +210,7 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                 onPageChanged: (index) {
                   _pokemonStore.setCurrentPokemon(index: index);
                   _pokeApiV2Store
-                      .getInfoPokemon(_pokemonStore.currentPokemon.name);
+                      .getInfoPokemon(_pokemonStore.currentPokemon.id);
                   _pokeApiV2Store.getInfoSpecie(
                       _pokemonStore.currentPokemon.id.toString());
                 },

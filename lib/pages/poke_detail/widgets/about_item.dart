@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_pokedex/pages/poke_detail/widgets/poke_about.dart';
 import 'package:flutter_pokedex/pages/poke_detail/widgets/poke_evolution.dart';
+import 'package:flutter_pokedex/pages/poke_detail/widgets/poke_status.dart';
 import 'package:flutter_pokedex/stores/poke_api-store.dart';
 import 'package:flutter_pokedex/stores/poke_apiv2-store.dart';
 import 'package:get_it/get_it.dart';
@@ -18,6 +19,7 @@ class _AboutItemState extends State<AboutItem>
   PageController _pageController;
   PokeApiStore _pokemonStore;
   PokeApiV2Store _pokeApiV2Store;
+  // ReactionDisposer _disposer;
 
   @override
   void initState() {
@@ -26,7 +28,18 @@ class _AboutItemState extends State<AboutItem>
     _pokemonStore = GetIt.instance<PokeApiStore>();
     _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();
     _pageController = PageController(initialPage: 0);
+    // _disposer = reaction(
+    //   (f) => _pokemonStore.currentPokemon,
+    //   (r) => _pageController.animateToPage(0,
+    //       duration: Duration(milliseconds: 300), curve: Curves.easeInOut),
+    // );
   }
+
+  // @override
+  // void dispose() {
+  //   _disposer();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +51,7 @@ class _AboutItemState extends State<AboutItem>
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(50),
           child: Observer(builder: (context) {
-            _pokeApiV2Store.getInfoPokemon(_pokemonStore.currentPokemon.name);
+            _pokeApiV2Store.getInfoPokemon(_pokemonStore.currentPokemon.id);
             _pokeApiV2Store
                 .getInfoSpecie(_pokemonStore.currentPokemon.id.toString());
             return TabBar(
@@ -86,7 +99,7 @@ class _AboutItemState extends State<AboutItem>
         children: <Widget>[
           PokeAbout(),
           PokeEvolution(),
-          Container(color: Colors.green),
+          PokeStatus(),
         ],
       ),
     );

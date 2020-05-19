@@ -3,7 +3,7 @@ class PokeApiV2 {
   int baseExperience;
   List<GameIndices> gameIndices;
   int height;
-  List<HeldItems> heldItems;
+  List<Null> heldItems;
   int id;
   bool isDefault;
   String locationAreaEncounters;
@@ -11,7 +11,6 @@ class PokeApiV2 {
   String name;
   int order;
   Ability species;
-  Sprites sprites;
   List<Stats> stats;
   List<Types> types;
   int weight;
@@ -29,7 +28,6 @@ class PokeApiV2 {
       this.name,
       this.order,
       this.species,
-      this.sprites,
       this.stats,
       this.types,
       this.weight});
@@ -41,7 +39,7 @@ class PokeApiV2 {
         abilities.add(new Abilities.fromJson(v));
       });
     }
-    baseExperience = json['base_experience'];    
+    baseExperience = json['base_experience'];
     if (json['game_indices'] != null) {
       gameIndices = new List<GameIndices>();
       json['game_indices'].forEach((v) {
@@ -62,8 +60,6 @@ class PokeApiV2 {
     order = json['order'];
     species =
         json['species'] != null ? new Ability.fromJson(json['species']) : null;
-    sprites =
-        json['sprites'] != null ? new Sprites.fromJson(json['sprites']) : null;
     if (json['stats'] != null) {
       stats = new List<Stats>();
       json['stats'].forEach((v) {
@@ -83,7 +79,8 @@ class PokeApiV2 {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.abilities != null) {
       data['abilities'] = this.abilities.map((v) => v.toJson()).toList();
-    }    
+    }
+    data['base_experience'] = this.baseExperience;
     if (this.gameIndices != null) {
       data['game_indices'] = this.gameIndices.map((v) => v.toJson()).toList();
     }
@@ -98,9 +95,6 @@ class PokeApiV2 {
     data['order'] = this.order;
     if (this.species != null) {
       data['species'] = this.species.toJson();
-    }
-    if (this.sprites != null) {
-      data['sprites'] = this.sprites.toJson();
     }
     if (this.stats != null) {
       data['stats'] = this.stats.map((v) => v.toJson()).toList();
@@ -172,57 +166,6 @@ class GameIndices {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['game_index'] = this.gameIndex;
-    if (this.version != null) {
-      data['version'] = this.version.toJson();
-    }
-    return data;
-  }
-}
-
-class HeldItems {
-  Ability item;
-  List<VersionDetails> versionDetails;
-
-  HeldItems({this.item, this.versionDetails});
-
-  HeldItems.fromJson(Map<String, dynamic> json) {
-    item = json['item'] != null ? new Ability.fromJson(json['item']) : null;
-    if (json['version_details'] != null) {
-      versionDetails = new List<VersionDetails>();
-      json['version_details'].forEach((v) {
-        versionDetails.add(new VersionDetails.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.item != null) {
-      data['item'] = this.item.toJson();
-    }
-    if (this.versionDetails != null) {
-      data['version_details'] =
-          this.versionDetails.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class VersionDetails {
-  int rarity;
-  Ability version;
-
-  VersionDetails({this.rarity, this.version});
-
-  VersionDetails.fromJson(Map<String, dynamic> json) {
-    rarity = json['rarity'];
-    version =
-        json['version'] != null ? new Ability.fromJson(json['version']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['rarity'] = this.rarity;
     if (this.version != null) {
       data['version'] = this.version.toJson();
     }

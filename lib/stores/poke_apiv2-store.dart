@@ -17,13 +17,13 @@ abstract class _PokeApiV2StoreBase with Store {
   PokeApiV2 pokeApiV2;
 
   @action
-  Future<void> getInfoPokemon(String name)async {
+  Future<void> getInfoPokemon(int id)async {
     try {
-      final response = await http.get(ConstsApi.pokeApiV2Url+name.toLowerCase());
+      final response = await http.get(ConstsApi.pokeApiV2Url+id.toString());
       var decodeJson = jsonDecode(response.body);
       pokeApiV2 = PokeApiV2.fromJson(decodeJson);
     } catch (error) {
-      print("Erro ao carregar list.");
+      print(error);
       return null;
     }
   }

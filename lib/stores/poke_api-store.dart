@@ -65,7 +65,7 @@ abstract class _PokeApiStoreBase with Store {
       var decodeJson = jsonDecode(response.body);
       return PokeApi.fromJson(decodeJson);
     } catch (error) {
-      print("Erro ao carregar list.");
+      print("Erro ao carregar list. $error");
       return null;
     }
   }
