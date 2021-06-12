@@ -21,20 +21,19 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _pokemonStore = GetIt.instance<PokeApiStore>();
-    if (_pokemonStore.pokeAPI == null)
-      _pokemonStore.fetchPokemonList();
+    if (_pokemonStore.pokeAPI == null) _pokemonStore.fetchPokemonList();
   }
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width; //Get screen size.
     double statusWidth =
         MediaQuery.of(context).padding.top; //Get statusbar size.
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
+        clipBehavior: Clip.none,
         alignment: Alignment.topCenter,
-        overflow: Overflow.visible,
         children: <Widget>[
           // Pokeball position.
           Positioned(
@@ -42,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             left: screenWidth - (240 / 1.6),
             child: Opacity(
               child: Image.asset(
-                ConstsApp.blackPokeball,// Image black pokeball.
+                ConstsApp.blackPokeball, // Image black pokeball.
                 height: 240,
                 width: 240,
               ),
@@ -68,12 +67,13 @@ class _HomePageState extends State<HomePage> {
                                 child: GridView.builder(
                                   physics: BouncingScrollPhysics(),
                                   padding: EdgeInsets.all(12),
-                                  addAutomaticKeepAlives: true,// Not recreate items.
+                                  addAutomaticKeepAlives:
+                                      true, // Not recreate items.
                                   gridDelegate:
                                       new SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2),
-                                  itemCount:
-                                      _pokemonStore.pokeAPI.pokemon.length,// List size
+                                  itemCount: _pokemonStore
+                                      .pokeAPI.pokemon.length, // List size
                                   itemBuilder: (context, index) {
                                     Pokemon pokemon =
                                         _pokemonStore.getPokemon(index: index);
@@ -92,7 +92,8 @@ class _HomePageState extends State<HomePage> {
                                             num: pokemon.num,
                                           ),
                                           onTap: () {
-                                            _pokemonStore.setCurrentPokemon(index: index);
+                                            _pokemonStore.setCurrentPokemon(
+                                                index: index);
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -110,7 +111,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               )
                             : Center(
-                                child: CircularProgressIndicator(),// Load indicator.
+                                child:
+                                    CircularProgressIndicator(), // Load indicator.
                               );
                       },
                     ),
