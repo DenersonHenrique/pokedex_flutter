@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_pokedex/models/pokeApiV2.dart';
-import 'package:flutter_pokedex/stores/poke_api-store.dart';
 import 'package:flutter_pokedex/stores/poke_apiv2-store.dart';
 import 'package:get_it/get_it.dart';
 
 class PokeStatus extends StatelessWidget {
-  @override
   final PokeApiV2Store _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();
-  final PokeApiStore _pokeApiStore = GetIt.instance<PokeApiStore>();
 
   final List<String> _statusName = [
     'Speed',
