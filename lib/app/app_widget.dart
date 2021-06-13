@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/pages/home_page/home_page.dart';
+import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/home_page.dart';
 
 class PokedexApp extends StatelessWidget {
   @override

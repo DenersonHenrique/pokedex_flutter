@@ -20,8 +20,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Reference of study and create.
 
-[Youtube channel](https://www.youtube.com/c/RenatoMotaDev)
-[Playlist Flutter Pokedex](https://www.youtube.com/playlist?list=PLHAtJbrQ17AVj0LJEc955109XpX925Pt1)
+- [Youtube channel](https://www.youtube.com/c/RenatoMotaDev)
+- [Playlist Flutter Pokedex](https://www.youtube.com/playlist?list=PLHAtJbrQ17AVj0LJEc955109XpX925Pt1)
 
 ## Author
 

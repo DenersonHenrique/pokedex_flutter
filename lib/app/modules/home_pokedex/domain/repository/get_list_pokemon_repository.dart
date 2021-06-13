@@ -1,5 +1,5 @@
-import 'package:flutter_pokedex/app/modules/home_pokedex/domain/entity/pokemon_model.dart';
+import 'package:flutter_pokedex/app/modules/home_pokedex/domain/entity/pokemon_list_entity.dart';
 
 abstract class IPokedexHomeRepository {
-  Future<List<Pokemon>> getMyPokemons();
+  Future<PokemonListEntity> getMyPokemons();
 }
