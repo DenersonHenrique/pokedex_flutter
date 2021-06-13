@@ -1,13 +1,13 @@
+import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_pokedex/models/pokeApi.dart';
-import 'package:flutter_pokedex/consts/consts_app.dart';
 import 'package:flutter_pokedex/stores/poke_api-store.dart';
+import 'package:flutter_pokedex/app/constants/consts_app.dart';
 import 'package:flutter_pokedex/pages/home_page/widgets/poke_item.dart';
 import 'package:flutter_pokedex/pages/poke_detail/poke_detail_page.dart';
 import 'package:flutter_pokedex/pages/home_page/widgets/app_bar_home.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:get_it/get_it.dart';
 
 class HomePage extends StatefulWidget {
   @override

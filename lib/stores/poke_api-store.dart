@@ -1,12 +1,11 @@
 import 'dart:convert';
-
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/consts/consts_api.dart';
 import 'package:mobx/mobx.dart';
-import 'package:flutter_pokedex/models/pokeApi.dart';
-import 'package:flutter_pokedex/consts/consts_app.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_pokedex/models/pokeApi.dart';
+import 'package:flutter_pokedex/app/constants/consts_api.dart';
+import 'package:flutter_pokedex/app/constants/consts_app.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 part 'poke_api-store.g.dart';
 
 class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
@@ -37,7 +36,7 @@ abstract class _PokeApiStoreBase with Store {
       _pokeAPI = pokeList;
     });
   }
-  
+
   Pokemon getPokemon({int index}) {
     return _pokeAPI.pokemon[index];
   }
@@ -55,7 +54,8 @@ abstract class _PokeApiStoreBase with Store {
       placeholder: (context, url) => new Container(
         color: Colors.transparent,
       ),
-      imageUrl: 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$numero.png',
+      imageUrl:
+          'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$numero.png',
     );
   }
 

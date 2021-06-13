@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/consts/consts_app.dart';
+import 'package:flutter_pokedex/app/constants/consts_app.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class PokeItem extends StatelessWidget {
   final String name;

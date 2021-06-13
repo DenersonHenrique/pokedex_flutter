@@ -1,15 +1,15 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_pokedex/consts/consts_app.dart';
+import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:flutter_pokedex/models/pokeApi.dart';
+import 'package:simple_animations/simple_animations.dart';
 import 'package:flutter_pokedex/stores/poke_api-store.dart';
 import 'package:flutter_pokedex/stores/poke_apiv2-store.dart';
-import 'package:get_it/get_it.dart';
-import 'package:simple_animations/simple_animations.dart';
-import 'package:simple_animations/simple_animations/multi_track_tween.dart';
-import 'package:sliding_sheet/sliding_sheet.dart';
+import 'package:flutter_pokedex/app/constants/consts_app.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_pokedex/pages/poke_detail/widgets/about_item.dart';
+import 'package:simple_animations/simple_animations/multi_track_tween.dart';
 
 class PokeDetailPage extends StatefulWidget {
   final int index;

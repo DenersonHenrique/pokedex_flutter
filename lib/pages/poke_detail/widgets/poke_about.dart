@@ -1,10 +1,10 @@
+import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_pokedex/components/circular_progress_about.dart';
 import 'package:flutter_pokedex/models/specie.dart';
 import 'package:flutter_pokedex/stores/poke_api-store.dart';
 import 'package:flutter_pokedex/stores/poke_apiv2-store.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_pokedex/app/common/widgets/circular_progress_about.dart';
 
 class PokeAbout extends StatelessWidget {
   final PokeApiV2Store _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();

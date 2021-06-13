@@ -1,25 +1,5 @@
-class PokeApi {
-  List<Pokemon> pokemon;
-
-  PokeApi({this.pokemon});
-
-  PokeApi.fromJson(Map<String, dynamic> json) {
-    if (json['pokemon'] != null) {
-      pokemon = <Pokemon>[];
-      json['pokemon'].forEach((v) {
-        pokemon.add(new Pokemon.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.pokemon != null) {
-      data['pokemon'] = this.pokemon.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
+import 'package:flutter_pokedex/app/modules/home_pokedex/domain/entity/pokemon_prev_evolution_model.dart';
+import 'package:flutter_pokedex/app/modules/home_pokedex/domain/entity/pokemon_next_evolution_model.dart';
 
 class Pokemon {
   int id;
@@ -91,44 +71,6 @@ class Pokemon {
       data['prev_evolution'] =
           this.prevEvolution.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class NextEvolution {
-  String num;
-  String name;
-
-  NextEvolution({this.num, this.name});
-
-  NextEvolution.fromJson(Map<String, dynamic> json) {
-    num = json['num'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['num'] = this.num;
-    data['name'] = this.name;
-    return data;
-  }
-}
-
-class PrevEvolution {
-  String num;
-  String name;
-
-  PrevEvolution({this.num, this.name});
-
-  PrevEvolution.fromJson(Map<String, dynamic> json) {
-    num = json['num'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['num'] = this.num;
-    data['name'] = this.name;
     return data;
   }
 }
