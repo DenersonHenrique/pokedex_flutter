@@ -9,35 +9,20 @@ part of 'pokedex_home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PokedexHomeController on _PokedexHomeControllerBase, Store {
-  Computed<PokeApi> _$pokeAPIComputed;
+  Computed<PokemonListEntity> _$pokemonListComputed;
 
   @override
-  PokeApi get pokeAPI =>
-      (_$pokeAPIComputed ??= Computed<PokeApi>(() => super.pokeAPI,
-              name: '_PokedexHomeControllerBase.pokeAPI'))
-          .value;
-  Computed<Pokemon> _$currentPokemonComputed;
-
-  @override
-  Pokemon get currentPokemon => (_$currentPokemonComputed ??= Computed<Pokemon>(
-          () => super.currentPokemon,
-          name: '_PokedexHomeControllerBase.currentPokemon'))
+  PokemonListEntity get pokemonList => (_$pokemonListComputed ??=
+          Computed<PokemonListEntity>(() => super.pokemonList,
+              name: '_PokedexHomeControllerBase.pokemonList'))
       .value;
-
-  final _$_pokeAPIAtom = Atom(name: '_PokedexHomeControllerBase._pokeAPI');
-
-  @override
-  PokeApi get _pokeAPI {
-    _$_pokeAPIAtom.reportRead();
-    return super._pokeAPI;
-  }
+  Computed<PokemonEntity> _$currentPokemonComputed;
 
   @override
-  set _pokeAPI(PokeApi value) {
-    _$_pokeAPIAtom.reportWrite(value, super._pokeAPI, () {
-      super._pokeAPI = value;
-    });
-  }
+  PokemonEntity get currentPokemon => (_$currentPokemonComputed ??=
+          Computed<PokemonEntity>(() => super.currentPokemon,
+              name: '_PokedexHomeControllerBase.currentPokemon'))
+      .value;
 
   final _$_pokemonListAtom =
       Atom(name: '_PokedexHomeControllerBase._pokemonList');
@@ -59,13 +44,13 @@ mixin _$PokedexHomeController on _PokedexHomeControllerBase, Store {
       Atom(name: '_PokedexHomeControllerBase._currentPokemon');
 
   @override
-  Pokemon get _currentPokemon {
+  PokemonEntity get _currentPokemon {
     _$_currentPokemonAtom.reportRead();
     return super._currentPokemon;
   }
 
   @override
-  set _currentPokemon(Pokemon value) {
+  set _currentPokemon(PokemonEntity value) {
     _$_currentPokemonAtom.reportWrite(value, super._currentPokemon, () {
       super._currentPokemon = value;
     });
@@ -140,7 +125,7 @@ mixin _$PokedexHomeController on _PokedexHomeControllerBase, Store {
     return '''
 pokeColor: ${pokeColor},
 currentPosition: ${currentPosition},
-pokeAPI: ${pokeAPI},
+pokemonList: ${pokemonList},
 currentPokemon: ${currentPokemon}
     ''';
   }
