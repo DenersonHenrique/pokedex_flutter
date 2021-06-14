@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_pokedex/app/constants/consts_app.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/widgets/app_bar_home.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/widgets/poke_list_widget.dart';
@@ -51,16 +52,24 @@ class _HomePageState extends State<HomePage> {
                   height: statusWidth,
                 ),
                 AppBarHome(),
-                _pokedexHomeController.pokemonList != null
-                    ? PokeListWidget(
-                        getPokemon: _pokedexHomeController.getPokemon,
-                        pokemonList: _pokedexHomeController.pokemonList,
-                        setCurrentPokemon:
-                            _pokedexHomeController.setCurrentPokemon,
-                      )
-                    : Center(
-                        child: CircularProgressIndicator(),
-                      ),
+                Observer(
+                  builder: (BuildContext context) {
+                    return _pokedexHomeController.pokemonList != null
+                        ? Expanded(
+                            child: Container(
+                              child: PokeListWidget(
+                                getPokemon: _pokedexHomeController.getPokemon,
+                                pokemonList: _pokedexHomeController.pokemonList,
+                                setCurrentPokemon:
+                                    _pokedexHomeController.setCurrentPokemon,
+                              ),
+                            ),
+                          )
+                        : Center(
+                            child: CircularProgressIndicator(),
+                          );
+                  },
+                ),
               ],
             ),
           ),

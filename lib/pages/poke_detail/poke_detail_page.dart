@@ -2,14 +2,14 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
-import 'package:flutter_pokedex/models/pokeApi.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:flutter_pokedex/stores/poke_api-store.dart';
 import 'package:flutter_pokedex/stores/poke_apiv2-store.dart';
 import 'package:flutter_pokedex/app/constants/consts_app.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_pokedex/pages/poke_detail/widgets/about_item.dart';
 import 'package:simple_animations/simple_animations/multi_track_tween.dart';
+import 'package:flutter_pokedex/app/modules/home_pokedex/domain/entity/pokemon_entity.dart';
+import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/controller/pokedex_home_controller.dart';
 
 class PokeDetailPage extends StatefulWidget {
   final int index;
@@ -25,20 +25,22 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
   double _progress;
   double _multiple;
   double _opacityTitleAppBar;
-  PokeApiStore _pokemonStore;
   PokeApiV2Store _pokeApiV2Store;
   MultiTrackTween _animation;
   PageController _pageController;
+  PokedexHomeController _pokedexHomeController;
 
   @override
   void initState() {
     super.initState();
     _pageController =
         PageController(initialPage: widget.index, viewportFraction: 0.5);
-    _pokemonStore = GetIt.instance<PokeApiStore>();
+    _pokedexHomeController = GetIt.instance<PokedexHomeController>();
+
     _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();
-    _pokeApiV2Store.getInfoPokemon(_pokemonStore.currentPokemon.id);
-    _pokeApiV2Store.getInfoSpecie(_pokemonStore.currentPokemon.id.toString());
+    _pokeApiV2Store.getInfoPokemon(_pokedexHomeController.currentPokemon.id);
+    _pokeApiV2Store
+        .getInfoSpecie(_pokedexHomeController.currentPokemon.id.toString());
     _animation = MultiTrackTween([
       Track("rotation").add(Duration(seconds: 5), Tween(begin: 0.0, end: 6.0),
           curve: Curves.linear)
@@ -71,8 +73,8 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                    _pokemonStore.pokeColor.withOpacity(0.7),
-                    _pokemonStore.pokeColor,
+                    _pokedexHomeController.pokeColor.withOpacity(0.7),
+                    _pokedexHomeController.pokeColor,
                   ])),
               child: Stack(
                 children: <Widget>[
@@ -136,7 +138,7 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                         _progress *
                             (MediaQuery.of(context).size.height * 0.060),
                     child: Text(
-                      _pokemonStore.currentPokemon.name,
+                      _pokedexHomeController.currentPokemon.name,
                       style: TextStyle(
                           fontFamily: 'Google',
                           fontSize: 35 -
@@ -157,9 +159,12 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            setTipos(_pokemonStore.currentPokemon.type),
+                            setTipos(
+                                _pokedexHomeController.currentPokemon.type),
                             Text(
-                              '#' + _pokemonStore.currentPokemon.num.toString(),
+                              '#' +
+                                  _pokedexHomeController.currentPokemon.number
+                                      .toString(),
                               style: TextStyle(
                                   fontFamily: 'Google',
                                   fontSize: 26,
@@ -208,15 +213,17 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
               child: PageView.builder(
                 controller: _pageController,
                 onPageChanged: (index) {
-                  _pokemonStore.setCurrentPokemon(index: index);
+                  _pokedexHomeController.setCurrentPokemon(index: index);
                   _pokeApiV2Store
-                      .getInfoPokemon(_pokemonStore.currentPokemon.id);
+                      .getInfoPokemon(_pokedexHomeController.currentPokemon.id);
                   _pokeApiV2Store.getInfoSpecie(
-                      _pokemonStore.currentPokemon.id.toString());
+                      _pokedexHomeController.currentPokemon.id.toString());
                 },
-                itemCount: _pokemonStore.pokeAPI.pokemon.length,
+                itemCount:
+                    _pokedexHomeController.pokemonList.pokemonListEntity.length,
                 itemBuilder: (BuildContext context, int index) {
-                  Pokemon _pokeItem = _pokemonStore.getPokemon(index: index);
+                  PokemonEntity _pokeItem =
+                      _pokedexHomeController.getPokemon(index: index);
                   return Stack(
                     alignment: Alignment.center,
                     children: <Widget>[
@@ -232,7 +239,8 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                                 height: 210,
                                 width: 210,
                               ),
-                              opacity: index == _pokemonStore.currentPosition
+                              opacity: index ==
+                                      _pokedexHomeController.currentPosition
                                   ? 0.2
                                   : 0,
                               duration: Duration(milliseconds: 200),
@@ -257,27 +265,33 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                                           new Container(
                                         color: Colors.transparent,
                                       ),
-                                      color:
-                                          index == _pokemonStore.currentPosition
-                                              ? null
-                                              : Colors.black.withOpacity(0.5),
+                                      color: index ==
+                                              _pokedexHomeController
+                                                  .currentPosition
+                                          ? null
+                                          : Colors.black.withOpacity(0.5),
                                       imageUrl:
-                                          'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${_pokeItem.num}.png',
+                                          'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${_pokeItem.number}.png',
                                     ),
-                                    tag: index == _pokemonStore.currentPosition
+                                    tag: index ==
+                                            _pokedexHomeController
+                                                .currentPosition
                                         ? _pokeItem.name
                                         : 'none' + index.toString(),
                                   ),
                                   duration: Duration(milliseconds: 400),
                                   curve: Curves.easeIn,
                                   padding: EdgeInsets.only(
-                                    top: index == _pokemonStore.currentPosition
+                                    top: index ==
+                                            _pokedexHomeController
+                                                .currentPosition
                                         ? 0
                                         : 60,
-                                    bottom:
-                                        index == _pokemonStore.currentPosition
-                                            ? 0
-                                            : 60,
+                                    bottom: index ==
+                                            _pokedexHomeController
+                                                .currentPosition
+                                        ? 0
+                                        : 60,
                                   ),
                                 ),
                               ],

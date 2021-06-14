@@ -20,8 +20,8 @@ class PokedexHomeInjection {
           instanceGetIt<PokedexHomeRepository>(),
         ),
       )
-      ..registerFactory<PokedexHomeController>(
-        () => PokedexHomeController(
+      ..registerSingleton<PokedexHomeController>(
+        PokedexHomeController(
           getListPokemonUsecase: instanceGetIt<GetListPokemonUsecase>(),
         ),
       );

@@ -6,12 +6,12 @@ abstract class IGetListPokemonUsecase {
 }
 
 class GetListPokemonUsecase implements IGetListPokemonUsecase {
-  IPokedexHomeRepository pokedexHomeRepository;
+  final IPokedexHomeRepository _pokedexHomeRepository;
 
   GetListPokemonUsecase(
-    this.pokedexHomeRepository,
+    this._pokedexHomeRepository,
   );
 
   Future<PokemonListEntity> getPokemonList() async =>
-      await pokedexHomeRepository.getMyPokemons();
+      await _pokedexHomeRepository.getMyPokemons();
 }

@@ -17,6 +17,7 @@ abstract class _PokeApiV2StoreBase with Store {
 
   @action
   Future<void> getInfoPokemon(int id) async {
+    // Get Usecase here
     try {
       final response = await http.get(ConstsApi.pokeApiV2Url + id.toString());
       var decodeJson = jsonDecode(response.body);
