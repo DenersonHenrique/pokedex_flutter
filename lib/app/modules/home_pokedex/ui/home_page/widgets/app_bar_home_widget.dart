@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pokedex/app/constants/app_string.dart';
 
 class AppBarHome extends StatelessWidget {
   @override
@@ -29,7 +30,7 @@ class AppBarHome extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 22.0),
                   child: Text(
-                    'Pokedex',
+                    AppString.appTitleAppBar,
                     style: TextStyle(
                       fontFamily: 'Google',
                       fontWeight: FontWeight.bold,

@@ -34,8 +34,7 @@ abstract class _PokemonDetailControllerBase with Store {
   @action
   Future<void> getInfoSpecie(String numPokemon) async {
     try {
-      final response =
-          await http.get(ConstsApi.pokeApiV2SpeciesUrl + numPokemon);
+      final response = await http.get(ConstsApi.pokeApiSpeciesUrl + numPokemon);
       var decodeJson = jsonDecode(response.body);
       specie = Specie.fromJson(decodeJson);
     } catch (error) {

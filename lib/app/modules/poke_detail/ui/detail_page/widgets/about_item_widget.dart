@@ -1,12 +1,13 @@
+import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:md2_tab_indicator/md2_tab_indicator.dart';
+import 'package:flutter_pokedex/app/constants/app_string.dart';
 import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/widgets/poke_about_widget.dart';
 import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/widgets/poke_status_widget.dart';
 import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/widgets/poke_evolution_widget.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/controller/pokedex_home_controller.dart';
 import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/controller/pokemon_detail_controller.dart';
-import 'package:get_it/get_it.dart';
 
 class AboutItemWidget extends StatefulWidget {
   @override
@@ -78,13 +79,13 @@ class _AboutItemWidgetState extends State<AboutItemWidget>
                   ),
               tabs: <Widget>[
                 Tab(
-                  text: "About",
+                  text: AppString.aboutItemAboutLabel,
                 ),
                 Tab(
-                  text: "Evolution",
+                  text: AppString.aboutItemEvolutionLabel,
                 ),
                 Tab(
-                  text: "Status",
+                  text: AppString.aboutItemStatusLabel,
                 ),
               ],
             );

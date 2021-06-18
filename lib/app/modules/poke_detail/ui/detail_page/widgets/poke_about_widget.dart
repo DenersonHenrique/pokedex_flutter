@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_pokedex/models/specie.dart';
+import 'package:flutter_pokedex/app/constants/app_string.dart';
 import 'package:flutter_pokedex/app/common/widgets/circular_progress_about.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/controller/pokedex_home_controller.dart';
 import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/controller/pokemon_detail_controller.dart';
@@ -19,7 +20,7 @@ class PokeAboutWidget extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Text(
-              'Description',
+              AppString.pokeAboutDescriptionLabel,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -31,8 +32,8 @@ class PokeAboutWidget extends StatelessWidget {
             Observer(
               builder: (context) {
                 Specie _specie = _pokemonDetailController.specie;
-                return SizedBox(
-                  // height: 100,
+                return Container(
+                  width: double.infinity,
                   child: _specie != null
                       ? Text(
                           _specie.flavorTextEntries
@@ -52,7 +53,7 @@ class PokeAboutWidget extends StatelessWidget {
               height: 10,
             ),
             Text(
-              'Biology',
+              AppString.pokeAboutBiologyLabel,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -71,7 +72,7 @@ class PokeAboutWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            'Height',
+                            AppString.pokeAboutHeightLabel,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -95,7 +96,7 @@ class PokeAboutWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            'Weight',
+                            AppString.pokeAboutWeightLabel,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
