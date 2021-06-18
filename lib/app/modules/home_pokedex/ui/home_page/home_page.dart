@@ -2,8 +2,8 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_pokedex/app/constants/consts_app.dart';
-import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/widgets/app_bar_home.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/widgets/poke_list_widget.dart';
+import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/widgets/app_bar_home_widget.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/controller/pokedex_home_controller.dart';
 
 class HomePage extends StatefulWidget {

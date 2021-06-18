@@ -5,7 +5,7 @@ class StatModel extends StatEntity {
   StatModel({
     int baseStat,
     int effort,
-    AbilitiesModel stat,
+    AbilityModel stat,
   }) : super(
           baseStat: baseStat,
           effort: effort,
@@ -16,7 +16,7 @@ class StatModel extends StatEntity {
     baseStat = json['base_stat'];
     effort = json['effort'];
     stat =
-        json['stat'] != null ? new AbilitiesModel.fromJson(json['stat']) : null;
+        json['stat'] != null ? new AbilityModel.fromJson(json['stat']) : null;
   }
 
   Map<String, dynamic> toJson() {

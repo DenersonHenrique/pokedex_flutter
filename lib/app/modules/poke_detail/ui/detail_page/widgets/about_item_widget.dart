@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/controller/pokedex_home_controller.dart';
-import 'package:flutter_pokedex/pages/poke_detail/widgets/poke_about.dart';
-import 'package:flutter_pokedex/pages/poke_detail/widgets/poke_evolution.dart';
-import 'package:flutter_pokedex/pages/poke_detail/widgets/poke_status.dart';
-import 'package:flutter_pokedex/stores/poke_apiv2-store.dart';
-import 'package:get_it/get_it.dart';
 import 'package:md2_tab_indicator/md2_tab_indicator.dart';
+import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/widgets/poke_about_widget.dart';
+import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/widgets/poke_status_widget.dart';
+import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/widgets/poke_evolution_widget.dart';
+import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/controller/pokedex_home_controller.dart';
+import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/controller/pokemon_detail_controller.dart';
+import 'package:get_it/get_it.dart';
 
-class AboutItem extends StatefulWidget {
+class AboutItemWidget extends StatefulWidget {
   @override
-  _AboutItemState createState() => _AboutItemState();
+  _AboutItemWidgetState createState() => _AboutItemWidgetState();
 }
 
-class _AboutItemState extends State<AboutItem>
+class _AboutItemWidgetState extends State<AboutItemWidget>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
   PageController _pageController;
   PokedexHomeController _pokedexHomeController;
-  PokeApiV2Store _pokeApiV2Store;
+  PokemonDetailController _pokemonDetailController;
   // ReactionDisposer _disposer;
 
   @override
@@ -26,7 +26,7 @@ class _AboutItemState extends State<AboutItem>
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _pokedexHomeController = GetIt.instance<PokedexHomeController>();
-    _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();
+    _pokemonDetailController = GetIt.instance<PokemonDetailController>();
     _pageController = PageController(initialPage: 0);
     // _disposer = reaction(
     //   (f) => _pokedexHomeController.currentPokemon,
@@ -51,9 +51,9 @@ class _AboutItemState extends State<AboutItem>
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(50),
           child: Observer(builder: (context) {
-            _pokeApiV2Store
+            _pokemonDetailController
                 .getInfoPokemon(_pokedexHomeController.currentPokemon.id);
-            _pokeApiV2Store.getInfoSpecie(
+            _pokemonDetailController.getInfoSpecie(
                 _pokedexHomeController.currentPokemon.id.toString());
             return TabBar(
               onTap: (index) {
@@ -98,9 +98,9 @@ class _AboutItemState extends State<AboutItem>
         },
         controller: _pageController,
         children: <Widget>[
-          PokeAbout(),
-          PokeEvolution(),
-          PokeStatus(),
+          PokeAboutWidget(),
+          PokeEvolutionWidget(),
+          PokeStatusWidget(),
         ],
       ),
     );

@@ -3,7 +3,7 @@ import 'package:flutter_pokedex/app/modules/poke_detail/domain/entity/ability_en
 class StatEntity {
   int baseStat;
   int effort;
-  AbilitiesEntity stat;
+  AbilityEntity stat;
 
   StatEntity({
     this.baseStat,

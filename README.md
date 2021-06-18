@@ -25,7 +25,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Author
 
-- **Denerson Henrique** - [Linkedin](www.linkedin.com/in/denersonhenrique) - [GitHub](https://github.com/DenersonHenrique)
+- **Denerson Henrique** - [Linkedin](https://www.linkedin.com/in/denersonhenrique/) - [GitHub](https://github.com/DenersonHenrique)
 
 ## License
 

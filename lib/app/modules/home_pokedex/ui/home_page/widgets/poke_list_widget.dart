@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/pages/poke_detail/poke_detail_page.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/domain/entity/pokemon_entity.dart';
+import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/poke_detail_page.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/domain/entity/pokemon_list_entity.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/widgets/poke_item_widget.dart';
 

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_pokedex/stores/poke_api-store.dart';
 import 'package:get_it/get_it.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/controller/pokedex_home_controller.dart';
 
 class CircularProgressAbout extends StatelessWidget {
   @override
@@ -13,7 +13,8 @@ class CircularProgressAbout extends StatelessWidget {
           width: 20,
           child: Center(
             child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(GetIt.instance<PokeApiStore>().pokeColor),
+              valueColor: AlwaysStoppedAnimation<Color>(
+                  GetIt.instance<PokedexHomeController>().pokeColor),
             ),
           ),
         ),

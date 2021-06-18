@@ -2,13 +2,15 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_pokedex/models/specie.dart';
-import 'package:flutter_pokedex/stores/poke_api-store.dart';
-import 'package:flutter_pokedex/stores/poke_apiv2-store.dart';
 import 'package:flutter_pokedex/app/common/widgets/circular_progress_about.dart';
+import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/controller/pokedex_home_controller.dart';
+import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/controller/pokemon_detail_controller.dart';
 
-class PokeAbout extends StatelessWidget {
-  final PokeApiV2Store _pokeApiV2Store = GetIt.instance<PokeApiV2Store>();
-  final PokeApiStore _pokeApiStore = GetIt.instance<PokeApiStore>();
+class PokeAboutWidget extends StatelessWidget {
+  final PokemonDetailController _pokemonDetailController =
+      GetIt.instance<PokemonDetailController>();
+  final PokedexHomeController _pokedexHomeController =
+      GetIt.instance<PokedexHomeController>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,24 +28,26 @@ class PokeAbout extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Observer(builder: (context) {
-              Specie _specie = _pokeApiV2Store.specie;
-              return SizedBox(
-                // height: 100,
-                child: _specie != null
-                    ? Text(
-                        _specie.flavorTextEntries
-                            .where((description) =>
-                                description.language.name == 'en')
-                            .first
-                            .flavorText,
-                        style: TextStyle(
-                          fontSize: 14,
-                        ),
-                      )
-                    : CircularProgressAbout(),
-              );
-            }),
+            Observer(
+              builder: (context) {
+                Specie _specie = _pokemonDetailController.specie;
+                return SizedBox(
+                  // height: 100,
+                  child: _specie != null
+                      ? Text(
+                          _specie.flavorTextEntries
+                              .where((description) =>
+                                  description.language.name == 'en')
+                              .first
+                              .flavorText,
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        )
+                      : CircularProgressAbout(),
+                );
+              },
+            ),
             SizedBox(
               height: 10,
             ),
@@ -75,7 +79,7 @@ class PokeAbout extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            _pokeApiStore.currentPokemon.height,
+                            _pokedexHomeController.currentPokemon.height,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -99,7 +103,7 @@ class PokeAbout extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            _pokeApiStore.currentPokemon.weight,
+                            _pokedexHomeController.currentPokemon.weight,
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -107,12 +111,12 @@ class PokeAbout extends StatelessWidget {
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   );
                 },
               ),
-            )
+            ),
           ],
           crossAxisAlignment: CrossAxisAlignment.start,
         ),

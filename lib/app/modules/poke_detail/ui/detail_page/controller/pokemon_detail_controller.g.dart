@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'poke_apiv2-store.dart';
+part of 'pokemon_detail_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,17 @@ part of 'poke_apiv2-store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$PokeApiV2Store on _PokeApiV2StoreBase, Store {
-  final _$specieAtom = Atom(name: '_PokeApiV2StoreBase.specie');
+mixin _$PokemonDetailController on _PokemonDetailControllerBase, Store {
+  Computed<PokemonDetailEntity> _$pokemonDetailEntityComputed;
+
+  @override
+  PokemonDetailEntity get pokemonDetailEntity =>
+      (_$pokemonDetailEntityComputed ??= Computed<PokemonDetailEntity>(
+              () => super.pokemonDetailEntity,
+              name: '_PokemonDetailControllerBase.pokemonDetailEntity'))
+          .value;
+
+  final _$specieAtom = Atom(name: '_PokemonDetailControllerBase.specie');
 
   @override
   Specie get specie {
@@ -24,23 +33,25 @@ mixin _$PokeApiV2Store on _PokeApiV2StoreBase, Store {
     });
   }
 
-  final _$pokeApiV2Atom = Atom(name: '_PokeApiV2StoreBase.pokeApiV2');
+  final _$_pokemonDetailEntityAtom =
+      Atom(name: '_PokemonDetailControllerBase._pokemonDetailEntity');
 
   @override
-  PokeApiV2 get pokeApiV2 {
-    _$pokeApiV2Atom.reportRead();
-    return super.pokeApiV2;
+  PokemonDetailEntity get _pokemonDetailEntity {
+    _$_pokemonDetailEntityAtom.reportRead();
+    return super._pokemonDetailEntity;
   }
 
   @override
-  set pokeApiV2(PokeApiV2 value) {
-    _$pokeApiV2Atom.reportWrite(value, super.pokeApiV2, () {
-      super.pokeApiV2 = value;
+  set _pokemonDetailEntity(PokemonDetailEntity value) {
+    _$_pokemonDetailEntityAtom.reportWrite(value, super._pokemonDetailEntity,
+        () {
+      super._pokemonDetailEntity = value;
     });
   }
 
   final _$getInfoPokemonAsyncAction =
-      AsyncAction('_PokeApiV2StoreBase.getInfoPokemon');
+      AsyncAction('_PokemonDetailControllerBase.getInfoPokemon');
 
   @override
   Future<void> getInfoPokemon(int id) {
@@ -48,7 +59,7 @@ mixin _$PokeApiV2Store on _PokeApiV2StoreBase, Store {
   }
 
   final _$getInfoSpecieAsyncAction =
-      AsyncAction('_PokeApiV2StoreBase.getInfoSpecie');
+      AsyncAction('_PokemonDetailControllerBase.getInfoSpecie');
 
   @override
   Future<void> getInfoSpecie(String numPokemon) {
@@ -60,7 +71,7 @@ mixin _$PokeApiV2Store on _PokeApiV2StoreBase, Store {
   String toString() {
     return '''
 specie: ${specie},
-pokeApiV2: ${pokeApiV2}
+pokemonDetailEntity: ${pokemonDetailEntity}
     ''';
   }
 }
