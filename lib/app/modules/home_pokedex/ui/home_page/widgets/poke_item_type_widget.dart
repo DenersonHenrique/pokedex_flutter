@@ -12,7 +12,7 @@ class PokeItemTypeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> typeList = [];
     types.forEach(
-      (nome) {
+      (name) {
         typeList.add(
           Column(
             children: <Widget>[
@@ -25,7 +25,7 @@ class PokeItemTypeWidget extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: Text(
-                    nome.trim(),
+                    name.trim(),
                     style: TextStyle(
                       fontFamily: 'Google',
                       fontSize: 16,

@@ -12,6 +12,7 @@ class PokeAboutWidget extends StatelessWidget {
       GetIt.instance<PokemonDetailController>();
   final PokedexHomeController _pokedexHomeController =
       GetIt.instance<PokedexHomeController>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,21 +33,21 @@ class PokeAboutWidget extends StatelessWidget {
             Observer(
               builder: (context) {
                 Specie _specie = _pokemonDetailController.specie;
-                return Container(
-                  width: double.infinity,
-                  child: _specie != null
-                      ? Text(
-                          _specie.flavorTextEntries
-                              .where((description) =>
-                                  description.language.name == 'en')
-                              .first
-                              .flavorText,
-                          style: TextStyle(
-                            fontSize: 14,
-                          ),
-                        )
-                      : CircularProgressAbout(),
-                );
+                return _specie != null
+                    ? Text(
+                        _specie.flavorTextEntries
+                            .where((description) =>
+                                description.language.name == 'en')
+                            .first
+                            .flavorText
+                            .replaceAll('\n', '')
+                            .replaceAll('\f', '')
+                            .replaceAll('POKéMON', 'Pokémon'),
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      )
+                    : CircularProgressAbout();
               },
             ),
             SizedBox(

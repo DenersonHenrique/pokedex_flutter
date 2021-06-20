@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pokedex/app/constants/consts_api.dart';
 import 'package:flutter_pokedex/app/constants/consts_app.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/widgets/poke_item_type_widget.dart';
 
 class PokeItem extends StatelessWidget {
-  final String name;
   final int index;
+  final String name;
   final Color color;
-  final String num;
+  final String number;
   final List<String> types;
 
   const PokeItem({
@@ -15,7 +16,7 @@ class PokeItem extends StatelessWidget {
     this.name,
     this.index,
     this.color,
-    this.num,
+    this.number,
     this.types,
   });
 
@@ -73,8 +74,7 @@ class PokeItem extends StatelessWidget {
                       placeholder: (context, url) => new Container(
                         color: Colors.transparent,
                       ),
-                      imageUrl:
-                          'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$num.png',
+                      imageUrl: '${ConstsApi.pokeImageUrl}$number.png',
                     ),
                     tag: name,
                   ),
@@ -84,12 +84,13 @@ class PokeItem extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  ConstsApp.getColorType(type: types[0]),
-                  ConstsApp.getColorType(type: types[0]).withOpacity(0.7),
-                ]),
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                ConstsApp.getColorType(type: types[0]),
+                ConstsApp.getColorType(type: types[0]).withOpacity(0.7),
+              ],
+            ),
             borderRadius: BorderRadius.all(
               Radius.circular(25.0),
             ),

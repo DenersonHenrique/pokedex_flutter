@@ -39,7 +39,7 @@ class PokeListWidget extends StatelessWidget {
                     types: pokemon.type,
                     index: index,
                     name: pokemon.name,
-                    num: pokemon.number,
+                    number: pokemon.number,
                   ),
                   onTap: () {
                     setCurrentPokemon(index: index);

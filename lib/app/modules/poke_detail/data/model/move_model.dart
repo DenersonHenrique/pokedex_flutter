@@ -25,7 +25,7 @@ class MoveModel extends MoveEntity {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.move != null) {
-      data['move'] = this.move; // Atention point.
+      data['move'] = this.move;
     }
     if (this.versionGroupDetails != null) {
       data['version_group_details'] = this

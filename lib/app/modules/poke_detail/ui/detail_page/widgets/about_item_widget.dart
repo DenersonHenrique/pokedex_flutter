@@ -51,45 +51,46 @@ class _AboutItemWidgetState extends State<AboutItemWidget>
         elevation: 0,
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(50),
-          child: Observer(builder: (context) {
-            _pokemonDetailController
-                .getInfoPokemon(_pokedexHomeController.currentPokemon.id);
-            _pokemonDetailController.getInfoSpecie(
-                _pokedexHomeController.currentPokemon.id.toString());
-            return TabBar(
-              onTap: (index) {
-                _pageController.animateToPage(index,
-                    duration: Duration(milliseconds: 300),
-                    curve: Curves.easeInOut);
-              },
-              controller: _tabController,
-              labelStyle: TextStyle(
-                  //up to your taste
-                  fontWeight: FontWeight.w700),
-              indicatorSize: TabBarIndicatorSize.label, //makes it better
-              labelColor: _pokedexHomeController.pokeColor, // Color label.
-              unselectedLabelColor: Color(0xff5f6368), //niceish grey
-              isScrollable: true, //up to your taste
-              indicator: MD2Indicator(
-                  //it begins here
-                  indicatorHeight: 3,
-                  indicatorColor: _pokedexHomeController.pokeColor,
-                  indicatorSize: MD2IndicatorSize
-                      .normal //3 different modes tiny-normal-full
+          child: Observer(
+            builder: (context) {
+              _pokemonDetailController.getInfoPokemon(
+                _pokedexHomeController.currentPokemon.id,
+              );
+              _pokemonDetailController.getInfoSpecie(
+                _pokedexHomeController.currentPokemon.id.toString(),
+              );
+              return TabBar(
+                onTap: (index) {
+                  _pageController.animateToPage(index,
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeInOut);
+                },
+                controller: _tabController,
+                labelStyle: TextStyle(
+                  fontWeight: FontWeight.w700,
+                ),
+                indicatorSize: TabBarIndicatorSize.label,
+                labelColor: _pokedexHomeController.pokeColor,
+                unselectedLabelColor: Color(0xff5f6368),
+                isScrollable: true,
+                indicator: MD2Indicator(
+                    indicatorHeight: 3,
+                    indicatorColor: _pokedexHomeController.pokeColor,
+                    indicatorSize: MD2IndicatorSize.normal),
+                tabs: <Widget>[
+                  Tab(
+                    text: AppString.aboutItemAboutLabel,
                   ),
-              tabs: <Widget>[
-                Tab(
-                  text: AppString.aboutItemAboutLabel,
-                ),
-                Tab(
-                  text: AppString.aboutItemEvolutionLabel,
-                ),
-                Tab(
-                  text: AppString.aboutItemStatusLabel,
-                ),
-              ],
-            );
-          }),
+                  Tab(
+                    text: AppString.aboutItemEvolutionLabel,
+                  ),
+                  Tab(
+                    text: AppString.aboutItemStatusLabel,
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
       body: PageView(

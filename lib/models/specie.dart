@@ -23,30 +23,31 @@ class Specie {
   ObjPokemon shape;
   List<Varieties> varieties;
 
-  Specie(
-      {this.baseHappiness,
-      this.captureRate,
-      this.color,
-      this.evolutionChain,
-      this.evolvesFromSpecies,
-      this.flavorTextEntries,
-      this.formsSwitchable,
-      this.genderRate,
-      this.genera,
-      this.generation,
-      this.growthRate,
-      this.habitat,
-      this.hasGenderDifferences,
-      this.hatchCounter,
-      this.id,
-      this.isBaby,
-      this.name,
-      this.names,
-      this.order,
-      this.palParkEncounters,
-      this.pokedexNumbers,
-      this.shape,
-      this.varieties});
+  Specie({
+    this.baseHappiness,
+    this.captureRate,
+    this.color,
+    this.evolutionChain,
+    this.evolvesFromSpecies,
+    this.flavorTextEntries,
+    this.formsSwitchable,
+    this.genderRate,
+    this.genera,
+    this.generation,
+    this.growthRate,
+    this.habitat,
+    this.hasGenderDifferences,
+    this.hatchCounter,
+    this.id,
+    this.isBaby,
+    this.name,
+    this.names,
+    this.order,
+    this.palParkEncounters,
+    this.pokedexNumbers,
+    this.shape,
+    this.varieties,
+  });
 
   Specie.fromJson(Map<String, dynamic> json) {
     baseHappiness = json['base_happiness'];

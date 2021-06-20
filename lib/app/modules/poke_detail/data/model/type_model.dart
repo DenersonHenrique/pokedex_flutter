@@ -20,7 +20,7 @@ class TypeModel extends TypeEntity {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['slot'] = this.slot;
     if (this.type != null) {
-      data['type'] = this.type; // Atention point.
+      data['type'] = this.type;
     }
     return data;
   }

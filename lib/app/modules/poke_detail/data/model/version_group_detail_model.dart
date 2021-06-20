@@ -26,10 +26,10 @@ class VersionGroupDetailsModel extends VersionGroupDetailsEntity {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['level_learned_at'] = this.levelLearnedAt;
     if (this.moveLearnMethod != null) {
-      data['move_learn_method'] = this.moveLearnMethod; // Atention point.
+      data['move_learn_method'] = this.moveLearnMethod;
     }
     if (this.versionGroup != null) {
-      data['version_group'] = this.versionGroup; // Atention point.
+      data['version_group'] = this.versionGroup;
     }
     return data;
   }

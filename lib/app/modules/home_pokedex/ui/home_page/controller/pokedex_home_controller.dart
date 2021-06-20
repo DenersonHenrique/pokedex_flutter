@@ -1,7 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pokedex/app/constants/consts_app.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/domain/entity/pokemon_entity.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/domain/entity/pokemon_list_entity.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/domain/usecase/get_list_pokemon_usecase.dart';
@@ -30,10 +29,17 @@ abstract class _PokedexHomeControllerBase with Store {
   PokemonEntity get currentPokemon => _currentPokemon;
 
   @observable
-  Color pokeColor;
+  Color _pokeColor;
+
+  @computed
+  Color get pokeColor => _pokeColor;
 
   @observable
   int currentPosition;
+
+  PokemonEntity getPokemon({int index}) {
+    return _pokemonList.pokemonListEntity[index];
+  }
 
   @action
   fetchPokemonList() async {
@@ -41,25 +47,10 @@ abstract class _PokedexHomeControllerBase with Store {
     _pokemonList = await _getListPokemonUsecase.getPokemonList();
   }
 
-  PokemonEntity getPokemon({int index}) {
-    return _pokemonList.pokemonListEntity[index];
-  }
-
   @action
   setCurrentPokemon({int index}) {
     _currentPokemon = _pokemonList.pokemonListEntity[index];
-    pokeColor = ConstsApp.getColorType(type: _currentPokemon.type[0]);
+    _pokeColor = ConstsApp.getColorType(type: _currentPokemon.type[0]);
     currentPosition = index;
-  }
-
-  @action
-  Widget getImage({String numero}) {
-    return CachedNetworkImage(
-      placeholder: (context, url) => new Container(
-        color: Colors.transparent,
-      ),
-      imageUrl:
-          'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/$numero.png',
-    );
   }
 }

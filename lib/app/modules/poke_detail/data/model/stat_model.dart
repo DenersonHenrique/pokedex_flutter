@@ -24,7 +24,7 @@ class StatModel extends StatEntity {
     data['base_stat'] = this.baseStat;
     data['effort'] = this.effort;
     if (this.stat != null) {
-      data['stat'] = this.stat; // Atention point.
+      data['stat'] = this.stat;
     }
     return data;
   }

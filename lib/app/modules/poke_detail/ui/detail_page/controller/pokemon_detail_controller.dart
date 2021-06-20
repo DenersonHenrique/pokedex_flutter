@@ -18,7 +18,10 @@ abstract class _PokemonDetailControllerBase with Store {
   }) : _getInfoPokemonUsecase = getInfoPokemonUsecase;
 
   @observable
-  Specie specie;
+  Specie _specie;
+
+  @computed
+  Specie get specie => _specie;
 
   @observable
   PokemonDetailEntity _pokemonDetailEntity;
@@ -36,7 +39,7 @@ abstract class _PokemonDetailControllerBase with Store {
     try {
       final response = await http.get(ConstsApi.pokeApiSpeciesUrl + numPokemon);
       var decodeJson = jsonDecode(response.body);
-      specie = Specie.fromJson(decodeJson);
+      _specie = Specie.fromJson(decodeJson);
     } catch (error) {
       print("Erro ao carregar list.");
       return null;

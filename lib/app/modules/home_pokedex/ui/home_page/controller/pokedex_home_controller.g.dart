@@ -23,6 +23,13 @@ mixin _$PokedexHomeController on _PokedexHomeControllerBase, Store {
           Computed<PokemonEntity>(() => super.currentPokemon,
               name: '_PokedexHomeControllerBase.currentPokemon'))
       .value;
+  Computed<Color> _$pokeColorComputed;
+
+  @override
+  Color get pokeColor =>
+      (_$pokeColorComputed ??= Computed<Color>(() => super.pokeColor,
+              name: '_PokedexHomeControllerBase.pokeColor'))
+          .value;
 
   final _$_pokemonListAtom =
       Atom(name: '_PokedexHomeControllerBase._pokemonList');
@@ -56,18 +63,18 @@ mixin _$PokedexHomeController on _PokedexHomeControllerBase, Store {
     });
   }
 
-  final _$pokeColorAtom = Atom(name: '_PokedexHomeControllerBase.pokeColor');
+  final _$_pokeColorAtom = Atom(name: '_PokedexHomeControllerBase._pokeColor');
 
   @override
-  Color get pokeColor {
-    _$pokeColorAtom.reportRead();
-    return super.pokeColor;
+  Color get _pokeColor {
+    _$_pokeColorAtom.reportRead();
+    return super._pokeColor;
   }
 
   @override
-  set pokeColor(Color value) {
-    _$pokeColorAtom.reportWrite(value, super.pokeColor, () {
-      super.pokeColor = value;
+  set _pokeColor(Color value) {
+    _$_pokeColorAtom.reportWrite(value, super._pokeColor, () {
+      super._pokeColor = value;
     });
   }
 
@@ -110,23 +117,12 @@ mixin _$PokedexHomeController on _PokedexHomeControllerBase, Store {
   }
 
   @override
-  Widget getImage({String numero}) {
-    final _$actionInfo = _$_PokedexHomeControllerBaseActionController
-        .startAction(name: '_PokedexHomeControllerBase.getImage');
-    try {
-      return super.getImage(numero: numero);
-    } finally {
-      _$_PokedexHomeControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
-pokeColor: ${pokeColor},
 currentPosition: ${currentPosition},
 pokemonList: ${pokemonList},
-currentPokemon: ${currentPokemon}
+currentPokemon: ${currentPokemon},
+pokeColor: ${pokeColor}
     ''';
   }
 }

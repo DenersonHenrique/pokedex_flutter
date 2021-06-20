@@ -9,6 +9,13 @@ part of 'pokemon_detail_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PokemonDetailController on _PokemonDetailControllerBase, Store {
+  Computed<Specie> _$specieComputed;
+
+  @override
+  Specie get specie =>
+      (_$specieComputed ??= Computed<Specie>(() => super.specie,
+              name: '_PokemonDetailControllerBase.specie'))
+          .value;
   Computed<PokemonDetailEntity> _$pokemonDetailEntityComputed;
 
   @override
@@ -18,18 +25,18 @@ mixin _$PokemonDetailController on _PokemonDetailControllerBase, Store {
               name: '_PokemonDetailControllerBase.pokemonDetailEntity'))
           .value;
 
-  final _$specieAtom = Atom(name: '_PokemonDetailControllerBase.specie');
+  final _$_specieAtom = Atom(name: '_PokemonDetailControllerBase._specie');
 
   @override
-  Specie get specie {
-    _$specieAtom.reportRead();
-    return super.specie;
+  Specie get _specie {
+    _$_specieAtom.reportRead();
+    return super._specie;
   }
 
   @override
-  set specie(Specie value) {
-    _$specieAtom.reportWrite(value, super.specie, () {
-      super.specie = value;
+  set _specie(Specie value) {
+    _$_specieAtom.reportWrite(value, super._specie, () {
+      super._specie = value;
     });
   }
 

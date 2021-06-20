@@ -107,7 +107,7 @@ class PokemonDetailModel extends PokemonDetailEntity {
     data['name'] = this.name;
     data['order'] = this.order;
     if (this.species != null) {
-      data['species'] = this.species; // Atention point.
+      data['species'] = this.species;
     }
     if (this.stats != null) {
       data['stats'] = this.stats.map((v) => (v as StatModel).toJson()).toList();

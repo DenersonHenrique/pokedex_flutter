@@ -21,7 +21,7 @@ class GameIndicesModel extends GameIndicesEntity {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['game_index'] = this.gameIndex;
     if (this.version != null) {
-      data['version'] = this.version; // Atention point;
+      data['version'] = this.version;
     }
     return data;
   }
