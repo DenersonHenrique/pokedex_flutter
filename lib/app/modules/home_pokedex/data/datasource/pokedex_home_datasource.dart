@@ -6,7 +6,9 @@ import 'package:flutter_pokedex/app/modules/home_pokedex/data/model/pokemon_list
 class PokedexHomeDataSource {
   Future getPokemons() async {
     try {
-      final response = await http.get(ConstsApi.pokeApiUrl);
+      final response = await http.get(
+        Uri.parse(ConstsApi.pokeApiUrl),
+      );
       var decodeJson = jsonDecode(response.body);
       return PokemonListModel.fromJson(decodeJson);
     } catch (error) {

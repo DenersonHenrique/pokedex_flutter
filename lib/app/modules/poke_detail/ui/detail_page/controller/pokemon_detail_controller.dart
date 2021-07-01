@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:mobx/mobx.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_pokedex/models/specie.dart';
+import 'package:flutter_pokedex/app/common/models/specie.dart';
 import 'package:flutter_pokedex/app/constants/consts_api.dart';
 import 'package:flutter_pokedex/app/modules/poke_detail/domain/entity/pokemon_detail_entity.dart';
 import 'package:flutter_pokedex/app/modules/poke_detail/domain/usecase/get_info_pokemon_usecase.dart';
@@ -37,7 +37,9 @@ abstract class _PokemonDetailControllerBase with Store {
   @action
   Future<void> getInfoSpecie(String numPokemon) async {
     try {
-      final response = await http.get(ConstsApi.pokeApiSpeciesUrl + numPokemon);
+      final response = await http.get(
+        Uri.parse(ConstsApi.pokeApiSpeciesUrl + numPokemon),
+      );
       var decodeJson = jsonDecode(response.body);
       _specie = Specie.fromJson(decodeJson);
     } catch (error) {
