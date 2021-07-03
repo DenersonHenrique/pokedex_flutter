@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:md2_tab_indicator/md2_tab_indicator.dart';
 import 'package:flutter_pokedex/app/constants/app_string.dart';
+import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/widgets/poke_about_widget.dart';
 import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/widgets/poke_status_widget.dart';
 import 'package:flutter_pokedex/app/modules/poke_detail/ui/detail_page/widgets/poke_evolution_widget.dart';
@@ -73,10 +73,10 @@ class _AboutItemWidgetState extends State<AboutItemWidget>
                 labelColor: _pokedexHomeController.pokeColor,
                 unselectedLabelColor: Color(0xff5f6368),
                 isScrollable: true,
-                indicator: MD2Indicator(
-                    indicatorHeight: 3,
-                    indicatorColor: _pokedexHomeController.pokeColor,
-                    indicatorSize: MD2IndicatorSize.normal),
+                indicator: MaterialIndicator(
+                  color: _pokedexHomeController.pokeColor,
+                  paintingStyle: PaintingStyle.fill,
+                ),
                 tabs: <Widget>[
                   Tab(
                     text: AppString.aboutItemAboutLabel,
