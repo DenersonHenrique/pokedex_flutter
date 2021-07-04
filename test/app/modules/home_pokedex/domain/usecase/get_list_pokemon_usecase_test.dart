@@ -19,7 +19,7 @@ void main() {
     getListPokemonUsecase = GetListPokemonUsecase(repository);
   });
 
-  group('Find all Pokemons.', () {
+  group('Find all Pokemon list.', () {
     test('Should return pokemon entity list.', () async {
       // Arrange
       when(() => repository.getMyPokemons()).thenAnswer(
@@ -29,6 +29,18 @@ void main() {
       final result = await getListPokemonUsecase.getPokemonList();
       // Assert
       expect(result, Right(listPokemon));
+      verify(() => repository.getMyPokemons()).called(1);
+    });
+
+    test('Should return a ServerFailure.', () async {
+      // Arrange
+      when(() => repository.getMyPokemons()).thenAnswer(
+        (_) async => Left<Failure, PokemonListEntity>(ServerFailure()),
+      );
+      // Actual
+      final result = await getListPokemonUsecase.getPokemonList();
+      // Assert
+      expect(result, Left(ServerFailure()));
       verify(() => repository.getMyPokemons()).called(1);
     });
   });
