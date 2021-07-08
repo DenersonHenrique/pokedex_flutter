@@ -4,18 +4,18 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_pokedex/app/common/models/specie.dart';
 import 'package:flutter_pokedex/app/constants/consts_api.dart';
 import 'package:flutter_pokedex/app/modules/poke_detail/domain/entity/pokemon_detail_entity.dart';
-import 'package:flutter_pokedex/app/modules/poke_detail/domain/usecase/get_info_pokemon_usecase.dart';
+import 'package:flutter_pokedex/app/modules/poke_detail/domain/usecase/get_info_pokemon_by_id_usecase.dart';
 part 'pokemon_detail_controller.g.dart';
 
 class PokemonDetailController = _PokemonDetailControllerBase
     with _$PokemonDetailController;
 
 abstract class _PokemonDetailControllerBase with Store {
-  final GetInfoPokemonUsecase _getInfoPokemonUsecase;
+  final GetInfoPokemonByIdUsecase _getInfoPokemonByIdUsecase;
 
   _PokemonDetailControllerBase({
-    GetInfoPokemonUsecase getInfoPokemonUsecase,
-  }) : _getInfoPokemonUsecase = getInfoPokemonUsecase;
+    GetInfoPokemonByIdUsecase getInfoPokemonByIdUsecase,
+  }) : _getInfoPokemonByIdUsecase = getInfoPokemonByIdUsecase;
 
   @observable
   Specie _specie;
@@ -31,7 +31,8 @@ abstract class _PokemonDetailControllerBase with Store {
 
   @action
   Future<void> getInfoPokemon(int id) async {
-    _pokemonDetailEntity = await _getInfoPokemonUsecase.getInfoPokemon(id);
+    // _pokemonDetailEntity = await _getInfoPokemonUsecase.getInfoPokemon(id);
+    _pokemonDetailEntity = null;
   }
 
   @action
