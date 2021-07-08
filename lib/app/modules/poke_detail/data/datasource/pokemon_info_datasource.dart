@@ -7,7 +7,9 @@ class PokemonInfoDataSource {
   Future getInfoPokemon(int id) async {
     try {
       final response = await http.get(
-        ConstsApi.pokeApiDetailUrl + id.toString(),
+        Uri.parse(
+          ConstsApi.pokeApiDetailUrl + id.toString(),
+        ),
       );
       var decodeJson = jsonDecode(response.body);
       return PokemonDetailModel.fromJson(decodeJson);
