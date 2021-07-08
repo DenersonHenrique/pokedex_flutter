@@ -13,7 +13,13 @@ class PokedexHomeRepository implements IPokedexHomeRepository {
 
   @override
   Future<Either<Failure, PokemonListEntity>> getMyPokemons() async {
-    final response = await _pokedexHomeDataSource.getPokemons();
-    return Right(response);
+    try {
+      final response = await _pokedexHomeDataSource.getPokemons();
+      return Right(response);
+    } on ServerFailure catch (error) {
+      return Left(error);
+    } catch (error) {
+      return Left(ServerFailure());
+    }
   }
 }

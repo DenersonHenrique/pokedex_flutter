@@ -14,10 +14,10 @@ class PokedexHomeDataSource extends IPokedexHomeDataSource {
   PokedexHomeDataSource(this.client);
 
   Future<PokemonListModel> getPokemons() async {
-    try {
-      final response = await client.get(ConstsApi.pokeApiUrl);
+    final response = await client.get(ConstsApi.pokeApiUrl);
+    if (response.statusCode == 200) {
       return PokemonListModel.fromJson(jsonDecode(response.data));
-    } on ServerException catch (error) {
+    } else {
       throw ServerException();
     }
   }
