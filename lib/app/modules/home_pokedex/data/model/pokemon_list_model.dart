@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/data/model/pokemon_model.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/domain/entity/pokemon_list_entity.dart';
 
 class PokemonListModel extends PokemonListEntity {
   PokemonListModel({
-    List<PokemonModel> pokemonListEntity,
+    @required List<PokemonModel> pokemonListEntity,
   }) : super(
           pokemonListEntity: pokemonListEntity,
         );

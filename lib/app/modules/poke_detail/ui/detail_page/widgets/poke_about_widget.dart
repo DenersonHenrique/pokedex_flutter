@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_pokedex/models/specie.dart';
+import 'package:flutter_pokedex/app/common/models/specie.dart';
 import 'package:flutter_pokedex/app/constants/app_string.dart';
 import 'package:flutter_pokedex/app/common/widgets/circular_progress_about.dart';
 import 'package:flutter_pokedex/app/modules/home_pokedex/ui/home_page/controller/pokedex_home_controller.dart';
