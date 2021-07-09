@@ -5,7 +5,7 @@ import 'package:flutter_pokedex/app/modules/poke_detail/data/datasource/pokemon_
 import 'package:flutter_pokedex/app/modules/poke_detail/domain/repository/get_info_pokemon_repository.dart';
 
 class PokemonInfoRepository implements IPokemonInfoRepository {
-  final PokemonInfoDataSource _pokemonInfoDataSource;
+  final IPokemonInfoDataSource _pokemonInfoDataSource;
 
   PokemonInfoRepository(
     this._pokemonInfoDataSource,
@@ -13,8 +13,15 @@ class PokemonInfoRepository implements IPokemonInfoRepository {
 
   @override
   Future<Either<Failure, PokemonDetailEntity>> getInfoPokemonById(
-      int id) async {
-    final response = await _pokemonInfoDataSource.getInfoPokemon(id);
-    return response;
+    int id,
+  ) async {
+    try {
+      final response = await _pokemonInfoDataSource.getInfoPokemon(id);
+      return Right(response);
+    } on ServerFailure catch (error) {
+      return Left(error);
+    } catch (e) {
+      return Left(ServerFailure());
+    }
   }
 }

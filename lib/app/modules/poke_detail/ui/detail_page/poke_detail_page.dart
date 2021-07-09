@@ -33,12 +33,15 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
   @override
   void initState() {
     super.initState();
-    _pageController =
-        PageController(initialPage: widget.index, viewportFraction: 0.5);
+    _pageController = PageController(
+      initialPage: widget.index,
+      viewportFraction: 0.5,
+    );
     _pokedexHomeController = GetIt.instance<PokedexHomeController>();
     _pokemonDetailController = GetIt.instance<PokemonDetailController>();
-    _pokemonDetailController
-        .getInfoPokemon(_pokedexHomeController.currentPokemon.id);
+    _pokemonDetailController.getInfoPokemon(
+      _pokedexHomeController.currentPokemon.id,
+    );
     _pokemonDetailController.getInfoSpecie(
       _pokedexHomeController.currentPokemon.id.toString(),
     );
@@ -283,10 +286,11 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                 ),
               ),
               padding: EdgeInsets.only(
-                  top: _opacityTitleAppBar == 1
-                      ? 1000
-                      : (MediaQuery.of(context).size.height * 0.25) -
-                          _progress * 50),
+                top: _opacityTitleAppBar == 1
+                    ? 1000
+                    : (MediaQuery.of(context).size.height * 0.25) -
+                        _progress * 50,
+              ),
             ),
             opacity: _opacity,
           )

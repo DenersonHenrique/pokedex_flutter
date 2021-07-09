@@ -31,8 +31,12 @@ abstract class _PokemonDetailControllerBase with Store {
 
   @action
   Future<void> getInfoPokemon(int id) async {
-    // _pokemonDetailEntity = await _getInfoPokemonUsecase.getInfoPokemon(id);
     _pokemonDetailEntity = null;
+    final result = await _getInfoPokemonByIdUsecase.getInfoPokemonById(id);
+    result.fold(
+      (l) => null,
+      (r) => _pokemonDetailEntity = r,
+    );
   }
 
   @action
