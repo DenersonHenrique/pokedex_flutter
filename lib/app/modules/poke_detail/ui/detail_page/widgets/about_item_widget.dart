@@ -61,9 +61,11 @@ class _AboutItemWidgetState extends State<AboutItemWidget>
               );
               return TabBar(
                 onTap: (index) {
-                  _pageController.animateToPage(index,
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.easeInOut);
+                  _pageController.animateToPage(
+                    index,
+                    duration: Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
                 },
                 controller: _tabController,
                 labelStyle: TextStyle(
@@ -95,8 +97,10 @@ class _AboutItemWidgetState extends State<AboutItemWidget>
       ),
       body: PageView(
         onPageChanged: (index) {
-          _tabController.animateTo(index,
-              duration: Duration(milliseconds: 300));
+          _tabController.animateTo(
+            index,
+            duration: Duration(milliseconds: 300),
+          );
         },
         controller: _pageController,
         children: <Widget>[
