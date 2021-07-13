@@ -1,3 +1,4 @@
+import 'package:flutter_pokedex/app/common/widgets/circular_progress_about.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -140,39 +141,41 @@ class PokeStatusWidget extends StatelessWidget {
         ),
         child: Observer(
           builder: (context) {
-            return Row(
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: pokeStatusName(),
-                ),
-                Observer(
-                  builder: (context) {
-                    List<int> _list = getStatusPokemon(
-                      _pokemonDetailController.pokemonDetailEntity,
-                    );
-                    return Column(
-                      children: pokeStatusValue(_list),
-                    );
-                  },
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Observer(
-                      builder: (context) {
-                        List<int> _list = getStatusPokemon(
-                          _pokemonDetailController.pokemonDetailEntity,
-                        );
-                        return Column(
-                          children: pokeStatusBar(_list),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            );
+            return _pokemonDetailController.pokemonDetailEntity != null
+                ? Row(
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: pokeStatusName(),
+                      ),
+                      Observer(
+                        builder: (context) {
+                          List<int> _list = getStatusPokemon(
+                            _pokemonDetailController.pokemonDetailEntity,
+                          );
+                          return Column(
+                            children: pokeStatusValue(_list),
+                          );
+                        },
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 10.0),
+                          child: Observer(
+                            builder: (context) {
+                              List<int> _list = getStatusPokemon(
+                                _pokemonDetailController.pokemonDetailEntity,
+                              );
+                              return Column(
+                                children: pokeStatusBar(_list),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : CircularProgressAbout();
           },
         ),
       ),
