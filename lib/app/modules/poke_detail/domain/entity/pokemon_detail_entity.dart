@@ -9,7 +9,6 @@ class PokemonDetailEntity {
   int baseExperience;
   List<GameIndicesEntity> gameIndices;
   int height;
-  List<Null> heldItems;
   int id;
   bool isDefault;
   String locationAreaEncounters;
@@ -26,7 +25,6 @@ class PokemonDetailEntity {
     this.baseExperience,
     this.gameIndices,
     this.height,
-    this.heldItems,
     this.id,
     this.isDefault,
     this.locationAreaEncounters,

@@ -24,6 +24,34 @@ mixin _$PokemonDetailController on _PokemonDetailControllerBase, Store {
               () => super.pokemonDetailEntity,
               name: '_PokemonDetailControllerBase.pokemonDetailEntity'))
           .value;
+  Computed<double> _$getProgressComputed;
+
+  @override
+  double get getProgress =>
+      (_$getProgressComputed ??= Computed<double>(() => super.getProgress,
+              name: '_PokemonDetailControllerBase.getProgress'))
+          .value;
+  Computed<double> _$getOpacityComputed;
+
+  @override
+  double get getOpacity =>
+      (_$getOpacityComputed ??= Computed<double>(() => super.getOpacity,
+              name: '_PokemonDetailControllerBase.getOpacity'))
+          .value;
+  Computed<double> _$getMultipleComputed;
+
+  @override
+  double get getMultiple =>
+      (_$getMultipleComputed ??= Computed<double>(() => super.getMultiple,
+              name: '_PokemonDetailControllerBase.getMultiple'))
+          .value;
+  Computed<double> _$getOpacityTitleAppBarComputed;
+
+  @override
+  double get getOpacityTitleAppBar => (_$getOpacityTitleAppBarComputed ??=
+          Computed<double>(() => super.getOpacityTitleAppBar,
+              name: '_PokemonDetailControllerBase.getOpacityTitleAppBar'))
+      .value;
 
   final _$_specieAtom = Atom(name: '_PokemonDetailControllerBase._specie');
 
@@ -57,6 +85,67 @@ mixin _$PokemonDetailController on _PokemonDetailControllerBase, Store {
     });
   }
 
+  final _$_progressAtom = Atom(name: '_PokemonDetailControllerBase._progress');
+
+  @override
+  double get _progress {
+    _$_progressAtom.reportRead();
+    return super._progress;
+  }
+
+  @override
+  set _progress(double value) {
+    _$_progressAtom.reportWrite(value, super._progress, () {
+      super._progress = value;
+    });
+  }
+
+  final _$_opacityAtom = Atom(name: '_PokemonDetailControllerBase._opacity');
+
+  @override
+  double get _opacity {
+    _$_opacityAtom.reportRead();
+    return super._opacity;
+  }
+
+  @override
+  set _opacity(double value) {
+    _$_opacityAtom.reportWrite(value, super._opacity, () {
+      super._opacity = value;
+    });
+  }
+
+  final _$_multipleAtom = Atom(name: '_PokemonDetailControllerBase._multiple');
+
+  @override
+  double get _multiple {
+    _$_multipleAtom.reportRead();
+    return super._multiple;
+  }
+
+  @override
+  set _multiple(double value) {
+    _$_multipleAtom.reportWrite(value, super._multiple, () {
+      super._multiple = value;
+    });
+  }
+
+  final _$_opacityTitleAppBarAtom =
+      Atom(name: '_PokemonDetailControllerBase._opacityTitleAppBar');
+
+  @override
+  double get _opacityTitleAppBar {
+    _$_opacityTitleAppBarAtom.reportRead();
+    return super._opacityTitleAppBar;
+  }
+
+  @override
+  set _opacityTitleAppBar(double value) {
+    _$_opacityTitleAppBarAtom.reportWrite(value, super._opacityTitleAppBar, () {
+      super._opacityTitleAppBar = value;
+    });
+  }
+
   final _$getInfoPokemonAsyncAction =
       AsyncAction('_PokemonDetailControllerBase.getInfoPokemon');
 
@@ -74,11 +163,74 @@ mixin _$PokemonDetailController on _PokemonDetailControllerBase, Store {
         .run(() => super.getInfoSpecie(numPokemon));
   }
 
+  final _$_PokemonDetailControllerBaseActionController =
+      ActionController(name: '_PokemonDetailControllerBase');
+
+  @override
+  void setProgress(double progress) {
+    final _$actionInfo = _$_PokemonDetailControllerBaseActionController
+        .startAction(name: '_PokemonDetailControllerBase.setProgress');
+    try {
+      return super.setProgress(progress);
+    } finally {
+      _$_PokemonDetailControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setOpacity(double opacity) {
+    final _$actionInfo = _$_PokemonDetailControllerBaseActionController
+        .startAction(name: '_PokemonDetailControllerBase.setOpacity');
+    try {
+      return super.setOpacity(opacity);
+    } finally {
+      _$_PokemonDetailControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setMultiple(double multiple) {
+    final _$actionInfo = _$_PokemonDetailControllerBaseActionController
+        .startAction(name: '_PokemonDetailControllerBase.setMultiple');
+    try {
+      return super.setMultiple(multiple);
+    } finally {
+      _$_PokemonDetailControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setOpacityTitleAppBar(double opacityTitleAppBar) {
+    final _$actionInfo =
+        _$_PokemonDetailControllerBaseActionController.startAction(
+            name: '_PokemonDetailControllerBase.setOpacityTitleAppBar');
+    try {
+      return super.setOpacityTitleAppBar(opacityTitleAppBar);
+    } finally {
+      _$_PokemonDetailControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setSlidingSheet(double stateProgress) {
+    final _$actionInfo = _$_PokemonDetailControllerBaseActionController
+        .startAction(name: '_PokemonDetailControllerBase.setSlidingSheet');
+    try {
+      return super.setSlidingSheet(stateProgress);
+    } finally {
+      _$_PokemonDetailControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 specie: ${specie},
-pokemonDetailEntity: ${pokemonDetailEntity}
+pokemonDetailEntity: ${pokemonDetailEntity},
+getProgress: ${getProgress},
+getOpacity: ${getOpacity},
+getMultiple: ${getMultiple},
+getOpacityTitleAppBar: ${getOpacityTitleAppBar}
     ''';
   }
 }

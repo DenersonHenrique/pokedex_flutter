@@ -21,10 +21,6 @@ class PokeDetailPage extends StatefulWidget {
 }
 
 class _PokeDetailPageState extends State<PokeDetailPage> {
-  double _opacity;
-  double _progress;
-  double _multiple;
-  double _opacityTitleAppBar;
   // AnimationController _animation;
   PageController _pageController;
   PokedexHomeController _pokedexHomeController;
@@ -33,12 +29,15 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
   @override
   void initState() {
     super.initState();
-    _pageController =
-        PageController(initialPage: widget.index, viewportFraction: 0.5);
+    _pageController = PageController(
+      initialPage: widget.index,
+      viewportFraction: 0.5,
+    );
     _pokedexHomeController = GetIt.instance<PokedexHomeController>();
     _pokemonDetailController = GetIt.instance<PokemonDetailController>();
-    _pokemonDetailController
-        .getInfoPokemon(_pokedexHomeController.currentPokemon.id);
+    _pokemonDetailController.getInfoPokemon(
+      _pokedexHomeController.currentPokemon.id,
+    );
     _pokemonDetailController.getInfoSpecie(
       _pokedexHomeController.currentPokemon.id.toString(),
     );
@@ -54,10 +53,6 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
     //     ),
     //   ],
     // );
-    _opacity = 1;
-    _progress = 0;
-    _multiple = 1;
-    _opacityTitleAppBar = 0;
   }
 
   double interval(
@@ -144,7 +139,7 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                       ],
                     ),
                     PokemonHeaderWidget(
-                      progress: _progress,
+                      progress: _pokemonDetailController.getProgress,
                       pokeName: _pokedexHomeController.currentPokemon.name,
                       pokeNumber: _pokedexHomeController.currentPokemon.number,
                       pokeType: _pokedexHomeController.currentPokemon.type,
@@ -158,11 +153,7 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
           SlidingSheet(
             listener: (state) {
               setState(() {
-                _progress = state.progress;
-                _multiple = 1 - interval(0.50, 0.86, _progress);
-                _opacity = _multiple;
-                _opacityTitleAppBar =
-                    _multiple = interval(0.50, 0.86, _progress);
+                _pokemonDetailController.setSlidingSheet(state.progress);
               });
             },
             elevation: 0,
@@ -238,19 +229,20 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                                   AnimatedPadding(
                                     child: Hero(
                                       child: CachedNetworkImage(
-                                          height: 135,
-                                          width: 135,
-                                          placeholder: (context, url) =>
-                                              new Container(
-                                                color: Colors.transparent,
-                                              ),
-                                          color: index ==
-                                                  _pokedexHomeController
-                                                      .currentPosition
-                                              ? null
-                                              : Colors.black.withOpacity(0.5),
-                                          imageUrl:
-                                              '${ConstsApi.pokeImageUrl}${_pokeItem.number}.png'),
+                                        height: 135,
+                                        width: 135,
+                                        placeholder: (context, url) =>
+                                            new Container(
+                                          color: Colors.transparent,
+                                        ),
+                                        color: index ==
+                                                _pokedexHomeController
+                                                    .currentPosition
+                                            ? null
+                                            : Colors.black.withOpacity(0.5),
+                                        imageUrl:
+                                            '${ConstsApi.pokeImageUrl}${_pokeItem.number}.png',
+                                      ),
                                       tag: index ==
                                               _pokedexHomeController
                                                   .currentPosition
@@ -283,13 +275,14 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
                 ),
               ),
               padding: EdgeInsets.only(
-                  top: _opacityTitleAppBar == 1
-                      ? 1000
-                      : (MediaQuery.of(context).size.height * 0.25) -
-                          _progress * 50),
+                top: _pokemonDetailController.getOpacityTitleAppBar == 1
+                    ? 1000
+                    : (MediaQuery.of(context).size.height * 0.25) -
+                        _pokemonDetailController.getProgress * 50,
+              ),
             ),
-            opacity: _opacity,
-          )
+            opacity: _pokemonDetailController.getOpacity,
+          ),
         ],
       ),
     );
