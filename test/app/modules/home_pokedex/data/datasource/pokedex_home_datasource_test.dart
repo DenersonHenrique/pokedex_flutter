@@ -17,8 +17,7 @@ void main() {
     pokedexHomeDataSource = PokedexHomeDataSource(httpClient);
   });
 
-  final json =
-      """{
+  final json = """{
     "pokemon": [
       {
         "id": 2,
@@ -70,7 +69,7 @@ void main() {
       expect(result, isA<PokemonListModel>());
     });
 
-    test('Should throw a ServerException when the call is unccessul.',
+    test('Should throw a ServerException when the call is successful.',
         () async {
       // Arrange
       when(() => httpClient.get(any())).thenAnswer(
