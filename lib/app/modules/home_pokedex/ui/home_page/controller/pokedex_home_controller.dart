@@ -44,7 +44,11 @@ abstract class _PokedexHomeControllerBase with Store {
   @action
   fetchPokemonList() async {
     _pokemonList = null;
-    _pokemonList = await _getListPokemonUsecase.getPokemonList();
+    final result = await _getListPokemonUsecase.getPokemonList();
+    result.fold(
+      (l) => null,
+      (r) => _pokemonList = r,
+    );
   }
 
   @action
